@@ -1,0 +1,5 @@
+django
+pandas
+folium
+psycopg2
+gunicorn

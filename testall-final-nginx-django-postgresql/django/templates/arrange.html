@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>{% block title %}Travel GO{% endblock title %}</title>
+
+  <!-- Bootstrap core CSS -->
+  {% block styles %}
+  {% include "parts/_styles.html" %}
+  {% endblock styles %}
+
+
+  <script>
+    function updateSelection2() {
+      var selection1 = document.getElementById("start_time");
+      var selection2 = document.getElementById("end_time");
+
+      // clear current options
+      selection2.innerHTML = "";
+
+      // add new options
+      for (var i = Number(selection1.value) + 2; i <= 22; i++) {
+        var option = document.createElement("option");
+        option.value = i;
+        option.text = i + ':00';
+        selection2.add(option);
+      }
+    }
+
+  </script>
+
+</head>
+
+<body>
+  {% block body %}
+  <!-- ***** Preloader Start ***** -->
+  {% include "parts/_preloader.html" %}
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  {% include "parts/_header.html" %}
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="top-text header-text">
+            <h6>Over 15,500+ Popular Places and Restaurants</h6>
+            <h2>Travel Taipei Attractions &amp; Restaurant</h2>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <form action="/arrange/map/" id="search-form" name="gs" role="search" action="map" method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-lg-3 align-self-center target tocenter">
+                <fieldset style="text-align:left;">
+
+                  <br>
+                  <label style="font-weight:bold;">出發日期 Date</label>
+                  <br>
+                  <br>
+                  <input type="date" name="date" class="form-select" placeholder="Enter a location" autocomplete="on"
+                    required style="border-color:#8d99af;border-width:1px;border-style:solid">
+
+                </fieldset>
+              </div>
+              <div class="col-lg-3 align-self-center target tocenter">
+                <fieldset style="text-align:left;">
+
+                  <br>
+                  <label for="start_time" style="font-weight:bold;">起始時間 Start time</label>
+                  <br>
+                  <br>
+                  <select name="start_time" class="form-select" aria-label="Area" id="start_time"
+                    onchange="updateSelection2()" required
+                    style="border-color:#8d99af;border-width:1px;border-style:solid">
+                    <option disabled style="display: none" selected value>請選擇起始時間</option>
+                    <option value="8">8:00</option>
+                    <option value="9">9:00</option>
+                    <option value="10">10:00</option>
+                    <option value="11">11:00</option>
+                    <option value="12">12:00</option>
+                    <option value="13">13:00</option>
+                    <option value="14">14:00</option>
+                    <option value="15">15:00</option>
+                    <option value="16">16:00</option>
+                    <option value="17">17:00</option>
+                    <option value="18">18:00</option>
+                    <option value="19">19:00</option>
+                    <option value="20">20:00</option>
+                  </select>
+                </fieldset>
+              </div>
+              <div class="col-lg-3 align-self-center target tocenter">
+                <fieldset style="text-align:left;">
+
+                  <br>
+
+                  <label for="end_time" style="font-weight:bold;">結束時間 End time</label>
+
+                  <br>
+                  <br>
+                  <select name="end_time" class="form-select" aria-label="Area" id="end_time"
+                    onchange="this.form.click()" required
+                    style="border-color:#8d99af;border-width:1px;border-style:solid">
+                    <option disabled style="display: none" selected value>請選擇結束時間</option>
+                    <!-- <option value="7">07:00</option>
+                    <option value="8">08:00</option>
+                    <option value="9">09:00</option>
+                    <option value="10">10:00</option>
+                    <option value="11">11:00</option>
+                    <option value="12">12:00</option>
+                    <option value="13">13:00</option>
+                    <option value="14">14:00</option>
+                    <option value="15">15:00</option>
+                    <option value="16">16:00</option>
+                    <option value="17">17:00</option>
+                    <option value="18">18:00</option>
+                    <option value="19">19:00</option>
+                    <option value="20">20:00</option>
+                    <option value="21">21:00</option>
+                    <option value="22">22:00</option>
+                    <option value="23">23:00</option> -->
+                  </select>
+                </fieldset>
+              </div>
+              <!-- <div class="col-lg-3 align-self-center target tocenter">
+                <fieldset style="text-align:left;">
+
+                  <br>
+                  <label for="eat" style="font-weight:bold;">是否安排用餐行程</label>
+                  <br>
+                  <br>
+                  <select name="eat" class="form-select" aria-label="Default select example" id="eat"
+                    onchange="this.form.click(); toggleVisibility(); toggleVisibility2()"
+                    style="border-color:#8d99af;border-width:1px;border-style:solid">
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                  </select>
+                </fieldset>
+              </div> -->
+              <div class="col-lg-3 align-self-center target tocenter">
+                <fieldset style="text-align:left;" id="bar_div">
+
+                  <br>
+                  <label style="font-weight:bold;">是否安排酒吧行程</label>
+                  <br>
+                  <br>
+                  <select name="bar" class="form-select" aria-label="Default select example" id="chooseCategory"
+                    onchange="this.form.click()" style="border-color:#8d99af;border-width:1px;border-style:solid">
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                  </select>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row" id="description" style="margin: 30px; display:block; transition: height 1s ease-out;">
+              <div class="row"><br></div>
+              <div class="col-lg-31 align-self-center" style="border-top:2px #8E99AE solid;">
+                <fieldset>
+                  <label class="fw-bolder" style="color:black; margin-top: 10px;">餐廳類型選取 Restaurant Type
+                    Selection(預設全選)</label><br>
+                  <br>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-1" autocomplete="off" name="food" value="日式"
+                    checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-1"
+                    title="Japanese">日式</label>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-2" autocomplete="off" name="food" value="中式"
+                    checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-2"
+                    title="Chinese">中式</label>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-3" autocomplete="off" name="food" value="美式"
+                    checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-3"
+                    title="American">美式</label>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-4" autocomplete="off" name="food" value="南洋"
+                    checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-4"
+                    title="Southern">南洋</label>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-5" autocomplete="off" name="food" value="燒烤店"
+                    checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-5"
+                    title="BBQ">燒烤店</label>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-6" autocomplete="off" name="food" value="港式"
+                    checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-6"
+                    title="HK">港式</label>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-7" autocomplete="off" name="food" value="火鍋"
+                    checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-7"
+                    title="Hotpot">火鍋</label>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-8" autocomplete="off" name="food" value="韓式"
+                    checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-8"
+                    title="Korean">韓式</label>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-9" autocomplete="off" name="food" value="咖啡甜點"
+                    checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-9"
+                    title="Coffee">咖啡甜點</label>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-10" autocomplete="off" name="food" value="素食"
+                    checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-10"
+                    title="Vegi">素食</label>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-11" autocomplete="off" name="food"
+                    value="台灣小吃/熱炒店" checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-11"
+                    title="Taiwanese">台灣小吃/熱炒店</label>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-12" autocomplete="off" name="food" value="意式"
+                    checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-12"
+                    title="Italian">義式</label>
+
+                  <input type="checkbox" class="btn-check" id="btn-check-13" autocomplete="off" name="food" value="異國料理"
+                    checked>
+                  <label class="btn btn-outline-warning text-dark fw-bolder form-label" for="btn-check-13"
+                    title="Exotic">異國料理</label>
+
+                </fieldset>
+              </div>
+
+            </div>
+            <div class="row"><br></div>
+            <div class="row">
+              <div class="align-self-center">
+                <fieldset>
+
+                  <button class="main-button" style="font-weight:bold;"><i class="fa fa-search"></i>Travel GO</button>
+
+                </fieldset>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function toggleVisibility() {
+      var select = document.getElementById("eat");
+      var description = document.getElementById("description");
+      if (select.value === "1") {
+        description.style.display = "block";
+      } else {
+        description.style.display = "none";
+      }
+    }
+
+    function toggleVisibility2() {
+      var select = document.getElementById("eat");
+      const targets = document.getElementsByClassName('col-lg-3');
+      var description = document.getElementById("bar_div");
+      if (select.value === "1") {
+        description.style.display = "block";
+        // for (let i = 0; i < targets.length; i++) {
+        //   targets[i].style.flex = '0 0 auto';
+        //   targets[i].style.display = 'flex';
+        //   targets[i].style.height = '100px';
+        //   targets[i].style.width = '20%';
+        // }
+
+      } else {
+        description.style.display = "none";
+        // for (let i = 0; i < targets.length; i++) {
+        //   targets[i].style.flex = '0 0 auto';
+        //   targets[i].style.display = 'flex';
+        //   targets[i].style.height = '100px';
+        //   targets[i].style.width = '25%';
+        // }
+      }
+    }
+
+    const form = document.getElementById('search-form');
+    form.addEventListener('submit', (event) => {
+      const checked = [...form.elements.food].some((checkbox) => checkbox.checked);
+      if (!checked) {
+        event.preventDefault();
+        alert('請至少選擇一種類型的餐廳');
+      }
+    });
+
+  </script>
+
+  {% include "parts/_footer.html" %}
+  <!-- Scripts -->
+  {% block scripts %}
+  {% include "parts/_scripts.html" %}
+  {% endblock scripts %}
+  {% endblock body %}
+
+</body>
+
+</html>

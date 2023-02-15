@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>{% block title %}Travel GO{% endblock title %}</title>
+  <script src="https://kit.fontawesome.com/654f0ab0be.js" crossorigin="anonymous"></script>
+  <!-- Bootstrap core CSS -->
+  {% block styles %}
+  {% include "parts/_styles.html" %}
+  {% endblock styles %}
+  <script>
+
+    function myFunction() {
+      window.location.reload();
+      //document.form1.submit();
+    }
+
+  </script>
+
+</head>
+
+<body>
+
+  {% block body %}
+  <!-- ***** Preloader Start ***** -->
+  {% include "parts/_preloader.html" %}
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  {% include "parts/_header.html" %}
+  <!-- ***** Header Area End ***** -->
+
+  <div class="page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="top-text header-text">
+            <h2>Data Pipeline Solutions</h2>
+            <h2>My Brillient Jobs</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row align-items-start">
+      <div style="height: 80px;">
+      </div>
+      <div class="col">
+        <h1>推薦行程（開始時間：{{ start }}點 — 結束時間：{{ end }}點） </h1>
+      </div>
+
+
+      <!-- 將所有結果列在下面 -->
+
+      <div class="row">
+
+        <table class="table" style="margin-left: 15px; font-size: 20px;">
+          <thead>
+            <tr class="table-success">
+              <th scope="col">#</th>
+              <th scope="col">開始時間</th>
+              <th scope="col">名稱</th>
+              <th scope="col">地址</th>
+              <th scope="col">推薦指數</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in df.itertuples %}
+
+            <tr class="table-warning">
+              <th scope="row">{{ item.Index|add:1 }}</th>
+              <td>{{ item.start }}:00</td>
+              <td>{{ item.place_name }}</td>
+              <td>{{ item.address }}</td>
+              <td>{{ item.model_rating }}</td>
+            </tr>
+
+            {% endfor %}
+
+
+          </tbody>
+        </table>
+      </div>
+      <div class="container_re">
+        <div class="row">
+          <div style="display: flex; justify-content: right; align-items: center;">
+            <pre class="refresh"
+              style="background-color: white;"><p style="font-size: 30px; color: rgb(255, 163, 224);">不喜歡？重新安排！  </p></pre>
+            <a href="" onclick="myFunction()" target="_blank" class="fa-solid fa-3x fa-sync fa-spin"
+              style="color: rgb(11, 252, 196);"><span class="label"></span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 將所有結果列在上面 -->
+
+    </div>
+
+    <div class="contact-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="inner-content" style="background-color: white;">
+              {% load static %}
+              <div class="row" style="margin-left: 10px; font-size: 20px; background-color: white;">
+                起點: 紫色標記
+                <img style="max-width: 4%; height: auto;" src="{% static 'img/icon2.png' %}">
+              </div>
+              <div class="row">
+                <!-- <div class="col-lg-6"> -->
+                <div id="map" style="height: 650px; width: 100%; position: relative;">
+                  {% include map_name %}
+                </div>
+                <!-- </div> -->
+              </div>
+
+              <!-- 
+              <div id="map" style="height: 650px; width: 100%; position: relative;">
+                {% include map_name %}
+              </div>
+
+              <div id="map">
+                <iframe src="/{{ map_name }}" width="100%" height="650px" frameborder="0" style="border:0"
+                  allowfullscreen></iframe>
+              </div> 
+              -->
+
+              <!-- <div class="row">
+              <div class="col-lg-6 align-self-center">
+                <form id="contact" action="" method="get">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <fieldset>
+                        <input type="name" name="name" id="name" placeholder="Name" autocomplete="on" required>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-6">
+                      <fieldset>
+                        <input type="surname" name="surname" id="surname" placeholder="Surname" autocomplete="on"
+                          required>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email"
+                          required="">
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                      <ul>
+                        <li><input type="checkbox" name="option1" value="cars"><span>Cars</span></li>
+                        <li><input type="checkbox" name="option2" value="aparmtents"><span>Apartments</span></li>
+                        <li><input type="checkbox" name="option3" value="shopping"><span>Shopping</span></li>
+                        <li><input type="checkbox" name="option4" value="food"><span>Food &amp; Life</span></li>
+                        <li><input type="checkbox" name="option5" value="traveling"><span>Traveling</span></li>
+                      </ul>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <textarea name="message" type="text" class="form-control" id="message" placeholder="Message"
+                          required=""></textarea>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <button type="submit" id="form-submit" class="main-button "><i class="fa fa-paper-plane"></i>
+                          Send Message</button>
+                      </fieldset>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div style="display: flex; justify-content: right; align-items: center;">
+          <pre class="navigate" style="background-color: white;">幫我導航  </pre>
+          <a href="{{ route }}" target="_blank" class="fas fa-car-side fa-5x fa-bounce"
+            style="color: rgb(11, 252, 196);"><span class="label"></span></a>
+        </div>
+      </div>
+    </div>
+
+    {% include "parts/_footer.html" %}
+    <!-- Scripts -->
+    {% block scripts %}
+    {% include "parts/_scripts.html" %}
+    {% endblock scripts %}
+    {% endblock body %}
+
+</body>
+
+</html>

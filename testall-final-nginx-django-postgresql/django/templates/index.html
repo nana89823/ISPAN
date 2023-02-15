@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+  <title>{% block title %}Travel GO{% endblock title %}</title>
+  <script src="https://kit.fontawesome.com/654f0ab0be.js" crossorigin="anonymous"></script>
+  {% load static %}
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script type="text/javascript">
+    $(function () {
+      /* 按下GoTop按鈕時的事件 */
+      $('#gotop').click(function () {
+        $('html,body').animate({ scrollTop: 0 }, 'slow');   /* 返回到最頂上 */
+        return false;
+      });
+
+      /* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 400) {
+          $('#gotop').fadeIn();
+        } else {
+          $('#gotop').fadeOut();
+        }
+      });
+    });
+  </script>
+  <!-- Bootstrap core CSS -->
+  {% block styles %}
+  {% include "parts/_styles.html" %}
+  {% endblock styles %}
+</head>
+
+<body>
+  {% block body %}
+  <!-- ***** Preloader Start ***** -->
+  {% include "parts/_preloader.html" %}
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  {% include "parts/_header.html" %}
+  <!-- ***** Header Area End ***** -->
+
+  <a id="gotop"><i class="fa-sharp fa-solid fa-angle-up"></i></a>
+
+  <div class="page-heading">
+    <div class="container">
+      <div class="row">
+
+        <div class="row" style="display: flex;flex-direction: row; margin-top: 100px;  margin-bottom: 100px;">
+          <div class="top-text header-text col-lg-6">
+            <h2>Let's Go</h2><br>
+            <h2>Start the adventures</h2>
+          </div>
+
+          <div class="offset-xl-4 col-lg-2">
+            <a href="/arrange" class="fa-brands fa-golang fa-shake fa-10x" style="color: white;"><span
+                class="label"></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-post">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="naccs">
+              <div class="grid">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="menu divcenter">
+                      <div class="active" style="display:none">
+                      </div>
+                      <!--.category-post .naccs .menu div "icon block底色"-->
+                      <div class="first-thumb">
+                        <div class="thumb">
+                          <span class="icon"><i class="fa-solid fa-group fa-4x iconcenter fa-bounce"></i>
+                            <h4 style="font-size: xx-large;white-space:nowrap;font-weight: 800;" class="offset-xl-5">
+                              團隊成員</h4>
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div class="thumb">
+                          <span class="icon"><i class="fa-solid fa-square-poll-horizontal fa-4x iconcenter fa-flip"></i>
+                            <h4 style="font-size: xx-large;white-space:nowrap;font-weight: 800;" class="offset-xl-5">
+                              成果簡報
+                            </h4>
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="last-thumb">
+                        <div class="thumb">
+                          <span class="icon"><i class="fa-regular fa-images fa-4x iconcenter fa-beat"></i>
+                            <h4 style="font-size: xx-large;white-space:nowrap;font-weight: 800;" class="offset-xl-5">
+                              視覺呈現
+                            </h4>
+                          </span>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <ul class="nacc">
+                      <li class="active">
+                      </li>
+
+                      <li>
+                        <div>
+                          <div class="thumb">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="top-content">
+                                </div>
+                              </div>
+
+                              <div class="col-lg-12">
+                                <div class="description">
+                                  <div class="row tocenter">
+                                    <div class="col-lg-12 memberdiv">
+                                      團隊介紹
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12 memberblock" style="display: flex;">
+                                    <div class="col-4" style="float: left;">
+                                      <img style="max-width: 60%; height: auto;" src="{% static 'assets/images/p1.png' %}"
+                                        style="width: 100px;height: 130px;">
+                                    </div>
+                                    <div class="col-lg-8" style="text-align: left;">
+                                      <h4>姓名：林嗣凡 Steven</h4>
+                                      <h4>學歷：M.S., Computer Science, New York University
+                                        <h4>擅長：資料視覺化、資料分析、全端、Ubuntu、Hadoop、docker、雲端平台</h4>
+                                        <h4>聯絡資訊：szufanlin@gmail.com</h4>
+                                    </div>
+                                  </div>
+
+                                  <hr>
+
+                                  <div class="col-12 memberblock" style="display: flex;">
+                                    <div class="col-4" style="float: left;">
+                                      <img style="max-width: 60%; height: auto;" src="{% static 'assets/images/p2.png' %}"
+                                        style="width: 100px;height: 130px;">
+                                    </div>
+                                    <div class="col-lg-8" style="text-align: left;">
+                                      <h4>姓名：林哲緯 Mason</h4>
+                                      <h4>學歷：輔仁大學 企業管理學系</h4>
+                                      <h4>擅長：網路爬蟲、資料清整、資料視覺化、MySQL、Docker</h4>
+                                      <h4>聯絡資訊：nana89823@gmail.com</h4>
+                                    </div>
+                                  </div>
+
+                                  <hr>
+
+                                  <div class="col-12 memberblock" style="display: flex;">
+                                    <div class="col-4" style="float: left;">
+                                      <img style="max-width: 60%; height: auto;" src="{% static 'assets/images/p3.png' %}"
+                                        style="width: 100px;height: 130px;">
+                                    </div>
+                                    <div class="col-lg-8" style="text-align: left;">
+                                      <h4>姓名：林谷翰 Dama</h4>
+                                      <h4>學歷：中原大學 物理系</h4>
+                                      <h4>擅長：網路爬蟲、資料清整、資料視覺化、Ubuntu、Hadoop、Docker、雲端平台</h4>
+                                      <h4>聯絡資訊：oldguy911011@gmail.com</h4>
+                                    </div>
+                                  </div>
+
+                                  <hr>
+
+                                  <div class="col-12 memberblock" style="display: flex;">
+                                    <div class="col-4" style="float: left;">
+                                      <img style="max-width: 60%; height: auto;" src="{% static 'assets/images/p4.png' %}"
+                                        style="width: 100px;height: 130px;">
+                                    </div>
+                                    <div class="col-lg-8" style="text-align: left;">
+                                      <h4>姓名：吳采靖 Jimmy</h4>
+                                      <h4>學歷:佛光大學</h4>
+                                      <h4>擅長：網路爬蟲，資料清整，資料視覺化、MySQL</h4>
+                                      <h4>聯絡資訊：jimmy123468012@gmail.com</h4>
+                                    </div>
+                                  </div>
+
+                                  <hr>
+
+                                  <div class="col-12 memberblock" style="display: flex;">
+                                    <div class="col-4" style="float: left;">
+                                      <img style="max-width: 60%; height: auto;" src="{% static 'assets/images/p5.png' %}"
+                                        style="width: 100px;height: 130px;">
+                                    </div>
+                                    <div class="col-lg-8" style="text-align: left;">
+                                      <h4>姓名：吳祈宏 Pikao</h4>
+                                      <h4>學歷：University of Strathclyde, MSc Marketing</h4>
+                                      <h4>擅長：網路爬蟲、資料清整、資料視覺化、資料分析、Docker、全端</h4>
+                                      <h4>聯絡資訊：pika830601@gmail.com</h4>
+                                    </div>
+                                  </div>
+
+                                  <hr>
+
+                                  <div class="col-12 memberblock" style="display: flex;">
+                                    <div class="col-4" style="float: left;">
+                                      <img style="max-width: 60%; height: auto;" src="{% static 'assets/images/p6.png' %}"
+                                        style="width: 100px;height: 130px;">
+                                    </div>
+                                    <div class="col-lg-8" style="text-align: left;">
+                                      <h4>姓名：張家鈞 Brian</h4>
+                                      <h4>學歷：M.A., International Politics & Economics, New York University</h4>
+                                      <h4>擅長：網路爬蟲、前端、資料視覺化、MySQL</h4>
+                                      <h4>聯絡資訊：trippplec0126@gmail.com</h4>
+                                    </div>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div>
+                          <div class="thumb">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="top-content">
+                                </div>
+                              </div>
+                              <div class="col-lg-12">
+                                <div class="description">
+                                  <div class="row reportcenter">
+                                    <div class="col-lg-9">
+                                      <!-- 簡報串接 -->
+                                      <div
+                                        style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;border-radius: 8px; will-change: transform;">
+                                        <iframe loading="lazy"
+                                          style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                                          src="https://onedrive.live.com/embed?cid=BFBF2BBCC88940E0&resid=BFBF2BBCC88940E0%21634&authkey=AF2PNy9LUnU4quQ&em=2"
+                                          allowfullscreen="allowfullscreen" allow="fullscreen">
+                                        </iframe>
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div>
+                          <div class="thumb">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="top-content">
+                                </div>
+                              </div>
+                              <div class="col-lg-12">
+                                <div class="description">
+                                  <div class="row reportcenter">
+                                    <div class="col-lg-9">
+                                      <!-- 儀錶板串接 -->
+                                      <div class='tableauPlaceholder' id='viz1673499096695' style='position: relative'>
+                                        <noscript><a href='#'><img alt='儀表板窗格 22 '
+                                              src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;2_&#47;2_16723096445890&#47;22&#47;1_rss.png'
+                                              style='border: none' /></a></noscript><object class='tableauViz'
+                                          style='display:none;'>
+                                          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                                          <param name='embed_code_version' value='3' />
+                                          <param name='site_root' value='' />
+                                          <param name='name' value='2_16723096445890&#47;22' />
+                                          <param name='tabs' value='no' />
+                                          <param name='toolbar' value='yes' />
+                                          <param name='staticimage'
+                                            value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;2&#47;2_16723096445890&#47;22&#47;1.png' />
+                                          <param name='animate_transition' value='yes' />
+                                          <param name='display_static_image' value='yes' />
+                                          <param name='display_spinner' value='yes' />
+                                          <param name='display_overlay' value='yes' />
+                                          <param name='display_count' value='yes' />
+                                          <param name='language' value='zh-TW' />
+                                          <param name='filter' value='publish=yes' />
+                                        </object>
+                                      </div>
+                                      <script
+                                        type='text/javascript'>                    var divElement = document.getElementById('viz1673499096695'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '827px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+                                      <div class='tableauPlaceholder' id='viz1673499262644' style='position: relative'>
+                                        <noscript><a href='#'><img alt='媽的 '
+                                              src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;R8&#47;R8PCM97TP&#47;1_rss.png'
+                                              style='border: none' /></a></noscript><object class='tableauViz'
+                                          style='display:none;'>
+                                          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                                          <param name='embed_code_version' value='3' />
+                                          <param name='path' value='shared&#47;R8PCM97TP' />
+                                          <param name='toolbar' value='yes' />
+                                          <param name='static_image'
+                                            value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;R8&#47;R8PCM97TP&#47;1.png' />
+                                          <param name='animate_transition' value='yes' />
+                                          <param name='display_static_image' value='yes' />
+                                          <param name='display_spinner' value='yes' />
+                                          <param name='display_overlay' value='yes' />
+                                          <param name='display_count' value='yes' />
+                                          <param name='language' value='zh-TW' />
+                                          <param name='filter' value='publish=yes' />
+                                        </object>
+                                      </div>
+                                      <script type='text/javascript'>                    var divElement = document.getElementById('viz1673499262644'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '827px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+                                      </script>
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include "parts/_footer.html" %}
+  <!-- Scripts -->
+  {% block scripts %}
+  {% include "parts/_scripts.html" %}
+  {% endblock scripts %}
+  {% endblock body %}
+</body>
+
+</html>

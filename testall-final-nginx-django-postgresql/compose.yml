@@ -1,0 +1,59 @@
+version: "3.7"
+
+services:
+
+  db:
+    image: postgres
+    container_name: test_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    expose:
+      - '5432'
+    volumes:
+      - ./postgresql/vol_data:/var/lib/postgresql/data
+      - ./postgresql/sql_init:/docker-entrypoint-initdb.d
+      - ./postgresql/sql_data:/data
+    networks:
+      - backnet
+
+  app:
+    build: ./django
+    container_name: test_django
+    restart: always
+    volumes:
+      - static:/static
+    env_file:
+      - django/.env
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PASSWORD: 1234
+    expose:
+      - '8000'
+    depends_on:
+      - db
+    networks:
+      - backnet
+      - frontnet
+
+  proxy:
+    build: ./nginx
+    container_name: test_nginx
+    restart: always
+    volumes:
+      - static:/static
+    ports:
+      - '80:80'
+    depends_on:
+      - app
+    networks:
+      - frontnet
+
+networks:
+  backnet:
+  frontnet:
+
+volumes:
+  static:
